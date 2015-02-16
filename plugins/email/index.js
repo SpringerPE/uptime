@@ -76,7 +76,12 @@ exports.initWebApp = function(options) {
         from:    config.message.from,
         to:      config.message.to,
         subject: lines.shift(),
-        text:    lines.join('\n')
+        cc:      checkEvent.tags.filter(function(value){
+                    return value.indexOf('mailto:') != -1;
+                 }).map(function(value){
+                    return value.split('mailto:')[1];
+                 }).join(', '),
+        text: lines.join('\n')
       };
       mailer.sendMail(mailOptions, function(err2, response) {
         if (err2) return console.error('Email plugin error: %s', err2);
