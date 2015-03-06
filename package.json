@@ -1,7 +1,7 @@
 {
   "name":    "springer-uptime",
   "description": "Remote monitoring for HTTP applications",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": "Francois Zaninotto and Springer PE",
   "dependencies": {
     "mongoose":  "3.6.7",
