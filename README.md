@@ -1,10 +1,10 @@
 uptime
 ======
 
-A remote monitoring application using Node.js, MongoDB, and Twitter Bootstrap.
+A remote monitoring application using Node.js, MongoDB, and Twitter Bootstrap. Forked from http://fzaninotto.github.com/uptime/
 
-<img src="https://raw.github.com/fzaninotto/uptime/downloads/check_details.png" title="Visualizing the availability of an HTTP check in Uptime" width="50%" valign="top" />
-<img src="https://raw.github.com/fzaninotto/uptime/downloads/check_form.png" title="Editing check attributes (polling interval, slow threshold, alert threshold, pattern to match, tags) in Uptime" width="50%" valign="top" />
+<img src="https://raw.github.com/springerpe/uptime/downloads/check_details.png" title="Visualizing the availability of an HTTP check in Uptime" width="50%" valign="top" />
+<img src="https://raw.github.com/springerpe/uptime/downloads/check_form.png" title="Editing check attributes (polling interval, slow threshold, alert threshold, pattern to match, tags) in Uptime" width="50%" valign="top" />
 
 You can watch a [demo screencast on Vimeo](https://vimeo.com/39302164).
 
@@ -36,7 +36,7 @@ Uptime 3.2 requires Node.js 0.10 and MongoDB 2.1. Older versions provide compati
 To install from GitHub, clone the repository and install dependencies using `npm`:
 
 ```sh
-$ git clone git://github.com/fzaninotto/uptime.git
+$ git clone git://github.com/springerpe/uptime.git
 $ cd uptime
 $ npm install
 ```
@@ -91,7 +91,7 @@ monitor:
   apiUrl:                 'http://localhost:8082/api' # must be accessible without a proxy
   pollingInterval:        10000      # ten seconds
   timeout:                5000       # five seconds
-  userAgent:              NodeUptime/2.0 (https://github.com/fzaninotto/uptime)
+  userAgent:              NodeUptime/2.0 (https://github.com/springerpe/uptime)
 
 analyzer:
   updateInterval:         60000      # one minute
@@ -120,7 +120,7 @@ Architecture
 
 Uptime is composed of two services: a webapp (in `app.js`), and a polling monitor (in `monitor.js)`. For your convenience, the two services start together when you call `node app`.
 
-<img src="https://raw.github.com/fzaninotto/uptime/downloads/architecture.png" title="Uptime architecture" />
+<img src="https://raw.github.com/springerpe/uptime/downloads/architecture.png" title="Uptime architecture" />
 
 However, heavily browsing the webapp may slow down the whole server - including the polling monitor. In other terms, using the application can influence the uptime measurements. To avoid this effect, it is recommended to run the polling monitor in a separate process.
 
@@ -145,11 +145,11 @@ Using Plugins
 
 Plugins can add more notification types, more poller types, new routes to the webapp, etc. Uptime currently bundles three plugins:
 
- * [`console`](https://github.com/fzaninotto/uptime/blob/master/plugins/console/index.js): log pings and events in the console in real time
- * [`email`](https://github.com/fzaninotto/uptime/blob/master/plugins/email/index.js): notify events (up, down pause) by email
- * [`patternMatcher`](https://github.com/fzaninotto/uptime/blob/master/plugins/patternMatcher/index.js): allow HTTP & HTTPS pollers to test the response body against a pattern
- * [`httpOptions`](https://github.com/fzaninotto/uptime/blob/master/plugins/httpOptions/index.js): add custom HTTP options and headers to HTTP and HTTPS checks (e.g. to allow self-signed certificate on HTTPS, custom headers, custom HTTP methods, ...)
- * [`basicAuth`](https://github.com/fzaninotto/uptime/blob/master/plugins/basicAuth/index.js): add HTTP Basic Access Authentication to the dashboard and API applications
+ * [`console`](https://github.com/springerpe/uptime/blob/master/plugins/console/index.js): log pings and events in the console in real time
+ * [`email`](https://github.com/springerpe/uptime/blob/master/plugins/email/index.js): notify events (up, down pause) by email
+ * [`patternMatcher`](https://github.com/springerpe/uptime/blob/master/plugins/patternMatcher/index.js): allow HTTP & HTTPS pollers to test the response body against a pattern
+ * [`httpOptions`](https://github.com/springerpe/uptime/blob/master/plugins/httpOptions/index.js): add custom HTTP options and headers to HTTP and HTTPS checks (e.g. to allow self-signed certificate on HTTPS, custom headers, custom HTTP methods, ...)
+ * [`basicAuth`](https://github.com/springerpe/uptime/blob/master/plugins/basicAuth/index.js): add HTTP Basic Access Authentication to the dashboard and API applications
 
 To enable plugins, just add a line to the `plugins:` section of the configuration file.
 Three of the bundled plugins are already enabled by default:
@@ -191,7 +191,7 @@ A plugin is a simple Node.js module which hooks into predefined extension points
 * `initWebApp(options)` when starting the webapp
 * `initMonitor(options)` when starting the monitor
 
-Check the [app.js](https://github.com/fzaninotto/uptime/blob/master/app.js#L97) and [monitor.js](https://github.com/fzaninotto/uptime/blob/master/monitor.js#L8) to see a detail of the options passed to each hook. Also, check the code of existing plugins to understand how they can add new pollers, new notification types, etc.
+Check the [app.js](https://github.com/springerpe/uptime/blob/master/app.js#L97) and [monitor.js](https://github.com/springerpe/uptime/blob/master/monitor.js#L8) to see a detail of the options passed to each hook. Also, check the code of existing plugins to understand how they can add new pollers, new notification types, etc.
 
 For instance, if you had to recreate a simple version of the `console` plugin, you could write it as follows:
 
@@ -463,7 +463,7 @@ Join the [node-uptime](https://groups.google.com/d/forum/node-uptime) Google Gro
 License
 -------
 
-The Uptime code is free to use and distribute, under the [MIT license](https://raw.github.com/fzaninotto/uptime/master/LICENSE).
+The Uptime code is free to use and distribute, under the [MIT license](https://raw.github.com/springerpe/uptime/master/LICENSE).
 
 Uptime uses third-party libraries:
 
@@ -475,7 +475,7 @@ Uptime uses third-party libraries:
 * [Flotr2](http://www.humblesoftware.com/flotr2/), licensed under the [MIT License](https://github.com/HumbleSoftware/Flotr2/blob/master/LICENSE).
 * [Favicon](http://www.alexpeattie.com/projects/justvector_icons/), distributed under the [Free Art License](http://artlibre.org/licence/lal/en).
 
-If you like the software, please help improving it by contributing PRs on the [GitHub project](https://github.com/fzaninotto/uptime)!
+If you like the software, please help improving it by contributing PRs on the [GitHub project](https://github.com/springerpe/uptime)!
 
 TODO
 ----
