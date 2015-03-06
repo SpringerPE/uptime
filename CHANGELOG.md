@@ -28,6 +28,16 @@ To be released
 * Fix "Cannot set property 'protocol' of undefined" error when running Uptime behind a proxy
 * Node 0.10 support
 
+
+2015-03-05, v4.0.0
+------------------
+* renamed node-uptime to springer-uptime
+* replaced http library for monitoring websites
+* Merge branch 'tag-delete' of https://github.com/Soullivaneuh/uptime
+* Merge branch 'try-fix-builder' of https://github.com/Soullivaneuh/uptime
+* added Docker and fig support
+
+
 2013-04-22, v3.1
 ----------------
 
