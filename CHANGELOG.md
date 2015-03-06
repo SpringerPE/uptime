@@ -29,6 +29,11 @@ To be released
 * Node 0.10 support
 
 
+2015-03-05, v4.0.1
+------------------
+* email plugin optionally sends alerts to mailadresses specified in tags
+
+
 2015-03-05, v4.0.0
 ------------------
 * renamed node-uptime to springer-uptime
