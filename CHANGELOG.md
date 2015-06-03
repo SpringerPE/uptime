@@ -29,6 +29,11 @@ To be released
 * Node 0.10 support
 
 
+2015-06-03, v4.0.2
+------------------
+* merged upstream change: https://github.com/fzaninotto/uptime/pull/242
+
+
 2015-03-05, v4.0.1
 ------------------
 * email plugin optionally sends alerts to mailadresses specified in tags
