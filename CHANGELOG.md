@@ -29,6 +29,11 @@ To be released
 * Node 0.10 support
 
 
+2015-08-27, v4.0.3
+------------------
+* fixed URL issue in alert emails (remove double slash).
+
+
 2015-06-03, v4.0.2
 ------------------
 * merged upstream change: https://github.com/fzaninotto/uptime/pull/242
