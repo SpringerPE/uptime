@@ -1,7 +1,7 @@
 {
   "name":    "springer-uptime",
   "description": "Remote monitoring for HTTP applications",
-  "version": "4.0.5",
+  "version": "4.0.7",
   "author": "Francois Zaninotto and Springer PE",
   "dependencies": {
     "mongoose":  "3.6.7",
@@ -30,8 +30,8 @@
   "repository": "https://github.com/springerpe/uptime",
   "license": "MIT",
   "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
+    "node": "0.12.7",
+    "npm": "2.11.3"
   },
   "scripts": {
     "test": "node_modules/.bin/mocha test/lib/",
