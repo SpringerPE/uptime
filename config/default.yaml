@@ -1,5 +1,7 @@
 url: 'http://localhost:8082'
 
+sentry_dsn: ''
+
 mongodb:
   server:   localhost
   database: uptime

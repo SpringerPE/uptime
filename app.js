@@ -8,6 +8,7 @@ var express    = require('express');
 var config     = require('config');
 var socketIo   = require('socket.io');
 var fs         = require('fs');
+var raven      = require('raven');
 var monitor    = require('./lib/monitor');
 var analyzer   = require('./lib/analyzer');
 var CheckEvent = require('./models/checkEvent');
@@ -71,6 +72,7 @@ app.configure('production', function() {
   var oneYear = 31557600000;
   app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
   app.use(express.errorHandler());
+  app.use(raven.middleware.express(config.sentry_dsn));
 });
 
 // Routes
