@@ -17,6 +17,13 @@ var PollerCollection = require('./lib/pollers/pollerCollection');
 var apiApp     = require('./app/api/app');
 var dashboardApp = require('./app/dashboard/app');
 
+
+// Sentry
+
+var sentry = new raven.Client(config.sentry_dsn);
+sentry.patchGlobal();  // fetching uncatched exceptions
+
+
 // database
 
 var mongoose   = require('./bootstrap');
@@ -28,6 +35,8 @@ a.start();
 
 var app = module.exports = express();
 var server = http.createServer(app);
+
+
 
 app.configure(function(){
   app.use(app.router);
