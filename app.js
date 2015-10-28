@@ -21,6 +21,7 @@ var dashboardApp = require('./app/dashboard/app');
 // Sentry
 
 var sentry = new raven.Client(config.sentry_dsn);
+sentry.captureMessage('Sentry got (re-)started.');
 
 
 // database
@@ -79,8 +80,11 @@ app.configure('development', function() {
 app.configure('production', function() {
   var oneYear = 31557600000;
   app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
+  // The request handler be the first item
+  app.use(raven.middleware.express.requestHandler(config.sentry_dsn));
+  // The error handler must be before any other error middleware
+  app.use(raven.middleware.express.errorHandler(config.sentry_dsn));
   app.use(express.errorHandler());
-  app.use(raven.middleware.express(config.sentry_dsn));
 });
 
 // Routes

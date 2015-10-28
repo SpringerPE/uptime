@@ -2,6 +2,8 @@
  * Module dependencies.
  */
 var express = require('express');
+var raven   = require('raven');
+var config  = require('config')
 var async = require('async');
 var partials = require('express-partials');
 var flash = require('connect-flash');
@@ -15,6 +17,12 @@ var CheckMonthlyStat = require('../../models/checkMonthlyStat');
 var moduleInfo = require('../../package.json');
 
 var app = module.exports = express();
+
+
+// Sentry
+
+var sentry = new raven.Client(config.sentry_dsn);
+
 
 // middleware
 
@@ -47,6 +55,10 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
+  // The request handler be the first item
+  app.use(raven.middleware.express.requestHandler(config.sentry_dsn));
+  // The error handler must be before any other error middleware
+  app.use(raven.middleware.express.errorHandler(config.sentry_dsn));
   app.use(express.errorHandler());
 });
 

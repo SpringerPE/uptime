@@ -4,6 +4,8 @@
 var express    = require('express');
 var Check      = require('../../models/check');
 var CheckEvent = require('../../models/checkEvent');
+  var raven   = require('raven');
+  var config  = require('config')
 
 var app = module.exports = express();
 
@@ -21,6 +23,10 @@ app.configure('development', debugErrorHandler);
 app.configure('test', debugErrorHandler);
 
 app.configure('production', function(){
+  // The request handler be the first item
+  app.use(raven.middleware.express.requestHandler(config.sentry_dsn));
+  // The error handler must be before any other error middleware
+  app.use(raven.middleware.express.errorHandler(config.sentry_dsn));
   app.use(express.errorHandler());
 });
 

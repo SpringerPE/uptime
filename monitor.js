@@ -1,6 +1,14 @@
 var fs      = require('fs');
+var raven   = require('raven');
 var config  = require('config');
 var Monitor = require('./lib/monitor');
+
+// Sentry
+var sentry = new raven.Client(config.sentry_dsn);
+sentry.patchGlobal(function() {
+  console.log('Sent error to Sentry. Terminating process.');
+  process.exit(1);
+});
 
 // start the monitor
 monitor = Monitor.createMonitor(config.monitor);
