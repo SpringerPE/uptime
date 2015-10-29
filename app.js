@@ -178,8 +178,8 @@ if (!module.parent) {
   server.on('error', function(e) {
     if (monitorInstance) {
       monitorInstance.stop();
-      process.exit(1);
     }
+    throw e;  // this error will be catched by Sentry
   });
 }
 
