@@ -22,6 +22,10 @@ var app = module.exports = express();
 // Sentry
 
 var sentry = new raven.Client(config.sentry_dsn);
+sentry.patchGlobal(function() {
+  console.log('Sent error to Sentry. Terminating process.');
+  process.exit(1);
+});
 
 
 // middleware

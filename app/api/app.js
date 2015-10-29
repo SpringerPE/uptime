@@ -4,8 +4,14 @@
 var express    = require('express');
 var Check      = require('../../models/check');
 var CheckEvent = require('../../models/checkEvent');
-  var raven   = require('raven');
-  var config  = require('config')
+var raven      = require('raven');
+var config     = require('config')
+
+var sentry = new raven.Client(config.sentry_dsn);
+sentry.patchGlobal(function() {
+  console.log('Sent error to Sentry. Terminating process.');
+  process.exit(1);
+});
 
 var app = module.exports = express();
 
