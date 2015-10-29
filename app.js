@@ -21,7 +21,6 @@ var dashboardApp = require('./app/dashboard/app');
 // Sentry
 
 var sentry = new raven.Client(config.sentry_dsn);
-sentry.captureMessage('Sentry got (re-)started.');
 sentry.patchGlobal(function() {
   console.log('Sent error to Sentry. Terminating process.');
   process.exit(1);
@@ -89,6 +88,7 @@ app.configure('production', function() {
   // The error handler must be before any other error middleware
   app.use(raven.middleware.express.errorHandler(config.sentry_dsn));
   app.use(express.errorHandler());
+  sentry.captureMessage('Sentry got (re-)started.');
 });
 
 // Routes
