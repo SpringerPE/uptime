@@ -58,7 +58,8 @@ var registerNewEventsLogger = function() {
 var registerNewPingsLogger = function() {
   Ping.on('afterInsert', function(ping) {
     ping.findCheck(function(err, check) {
-      var message = check.name + ' ';
+      var message = check.name || '';
+      message += ' ';
       message += (ping.isUp) ? color('OK', 'green') : color('responded with error "' + ping.error + '"', 'red');
       console.log(timestamp() + message);
     });
