@@ -72,15 +72,23 @@ exports.initWebApp = function(options) {
         filename: filename
       };
       var lines = ejs.render(fs.readFileSync(filename, 'utf8'), renderOptions).split('\n');
+
+      var emails = []
+      // Try to parse the email addresses out of the check's tags.
+      emails = checkEvent.tags.filter(function(value){
+        return value.indexOf('mailto:') != -1;
+      }).map(function(value){
+        return value.split('mailto:')[1];
+      });
+
+      if (emails.length === 0) return console.log('No emails configured for this check, skipping mail!');
+
+      console.log('Sending email alert to "' + emails.join(', ') + '"');
+
       var mailOptions = {
         from:    config.message.from,
-        to:      config.message.to,
+        to:      emails.join(', '),
         subject: lines.shift(),
-        cc:      checkEvent.tags.filter(function(value){
-                    return value.indexOf('mailto:') != -1;
-                 }).map(function(value){
-                    return value.split('mailto:')[1];
-                 }).join(', '),
         text: lines.join('\n')
       };
       mailer.sendMail(mailOptions, function(err2, response) {
